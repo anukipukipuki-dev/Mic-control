@@ -26,6 +26,10 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          # Evita el paquete obsoleto "tools" (que Google ya eliminó) y que
+          # hacía fallar el paso. Gradle descarga el SDK que necesita.
+          packages: ""
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -42,4 +46,3 @@ jobs:
           name: mic-control-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-
